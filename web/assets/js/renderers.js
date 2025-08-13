@@ -269,11 +269,11 @@ function enhanceMarkdown(root) {
 export function renderHeader(active = '') {
   const header = el('div', { className: 'header' }, [
     el('nav', { className: 'nav' }, [
-      link('/web/index.html', '首页', active === 'home'),
-      link('/web/models/index.html', '模型列表', active === 'models'),
-      link('/web/compare/index.html', '模型对比', active === 'compare'),
-      link('/web/practice/detail.html', '模型实操', active === 'practice'),
-      link('/web/metrics/index.html', '评估指标', active === 'metrics'),
+      link('/index.html', '首页', active === 'home'),
+      link('/models/index.html', '模型列表', active === 'models'),
+      link('/compare/index.html', '模型对比', active === 'compare'),
+      link('/practice/detail.html', '模型实操', active === 'practice'),
+      link('/metrics/index.html', '评估指标', active === 'metrics'),
       el('div', { className: 'spacer' }),
       el('div', { className: 'search' }, [
         el('input', { type: 'search', placeholder: '在本页搜索...', id: 'page-search' }),
@@ -371,7 +371,7 @@ function slugify(text) {
 let SUMMARY_INDEX_CACHE = null;
 async function getSummaryIndex() {
   if (SUMMARY_INDEX_CACHE) return SUMMARY_INDEX_CACHE;
-  const md = await fetchText('/model_detail.md');
+  const md = await fetchText('/docs/model_detail.md');
   const lines = md.split(/\r?\n/);
   const idx = {};
   let current = null;
@@ -399,7 +399,7 @@ async function getSummaryIndex() {
 let DETAIL_MD_TEXT_CACHE = null;
 async function getDetailMdText() {
   if (DETAIL_MD_TEXT_CACHE) return DETAIL_MD_TEXT_CACHE;
-  DETAIL_MD_TEXT_CACHE = await fetchText('/model_detail.md');
+  DETAIL_MD_TEXT_CACHE = await fetchText('/docs/model_detail.md');
   return DETAIL_MD_TEXT_CACHE;
 }
 
@@ -555,7 +555,7 @@ async function getAutoSummaries(names = []) {
 let MODEL_SUMMARY_DOC_CACHE = null;
 async function getSummariesFromDoc() {
   if (MODEL_SUMMARY_DOC_CACHE) return MODEL_SUMMARY_DOC_CACHE;
-  const md = await fetchText('/model_summery.md');
+  const md = await fetchText('/docs/model_summery.md');
   const lines = md.split(/\r?\n/);
   const map = {};
   function normalizeTitle(t) {
@@ -626,12 +626,12 @@ function createModelListItem({
     leftSide.append(el('span', { className: 'twisty', textContent: '▶' }));
   }
   const qsParams = `id=${encodeURIComponent(idGuess)}&name=${encodeURIComponent(name)}${enName ? `&en=${encodeURIComponent(enName)}` : ''}`;
-  const modelLink = el('a', { href: `/web/models/detail.html?${qsParams}`, textContent: name });
+  const modelLink = el('a', { href: `/models/detail.html?${qsParams}`, textContent: name });
   leftSide.append(modelLink);
 
   const rightSide = el('div', { className: 'item-right' });
-  const practiceLink = el('a', { className: 'link-action', href: `/web/practice/detail.html?model=${encodeURIComponent(idGuess)}` , textContent: '查看实操' });
-  const compareLink = el('a', { className: 'link-action', href: `/web/compare/index.html?add=${encodeURIComponent(idGuess)}`, textContent: '加入对比' });
+  const practiceLink = el('a', { className: 'link-action', href: `/practice/detail.html?model=${encodeURIComponent(idGuess)}` , textContent: '查看实操' });
+  const compareLink = el('a', { className: 'link-action', href: `/compare/index.html?add=${encodeURIComponent(idGuess)}`, textContent: '加入对比' });
   rightSide.append(practiceLink, compareLink);
   itemHeader.append(leftSide, rightSide);
 
@@ -651,11 +651,11 @@ function createModelListItem({
       const smSummary = docSummaries[smName] || docSummaries[smEn] || autoSummaries[smName] || summaryIndex[smName] || '（概览信息待补充）';
       const subHeader = el('div', { className: 'sub-item-header' });
       const subLeft = el('div', { className: 'item-left' });
-      subLeft.append(el('a', { href: `/web/models/detail.html?id=${encodeURIComponent(smId)}&name=${encodeURIComponent(smName)}${smEn ? `&en=${encodeURIComponent(smEn)}` : ''}`, textContent: smName }));
+      subLeft.append(el('a', { href: `/models/detail.html?id=${encodeURIComponent(smId)}&name=${encodeURIComponent(smName)}${smEn ? `&en=${encodeURIComponent(smEn)}` : ''}`, textContent: smName }));
       const subRight = el('div', { className: 'item-right' });
       subRight.append(
-        el('a', { className: 'link-action', href: `/web/practice/detail.html?model=${encodeURIComponent(smId)}`, textContent: '查看实操' }),
-        el('a', { className: 'link-action', href: `/web/compare/index.html?add=${encodeURIComponent(smId)}`, textContent: '加入对比' })
+        el('a', { className: 'link-action', href: `/practice/detail.html?model=${encodeURIComponent(smId)}`, textContent: '查看实操' }),
+        el('a', { className: 'link-action', href: `/compare/index.html?add=${encodeURIComponent(smId)}`, textContent: '加入对比' })
       );
       subHeader.append(subLeft, subRight);
       const subMeta = el('div', { className: 'item-meta', textContent: smSummary });
@@ -682,8 +682,8 @@ function createModelListItem({
 export async function renderModelList() {
   const container = qs('#app');
   const [mdList, models, summaryIndex, docSummaries] = await Promise.all([
-    fetchText('/model_list.md'),
-    fetchJSON('/web/data/models.json').catch(() => []),
+    fetchText('/docs/model_list.md'),
+    fetchJSON('/data/models.json').catch(() => []),
     getSummaryIndex(),
     getSummariesFromDoc()
   ]);
@@ -691,7 +691,7 @@ export async function renderModelList() {
   // Toolbar: back + go to practice + expand/collapse all
   const toolbar = el('div', { className: 'toolbar' }, [
     el('button', { className: 'btn', 'data-back': '1', textContent: '返回上一页' }),
-    el('a', { className: 'btn', href: '/web/practice/detail.html', textContent: '模型实操页' }),
+    el('a', { className: 'btn', href: '/practice/detail.html', textContent: '模型实操页' }),
     el('button', { className: 'btn', id: 'toggle-expand-models', textContent: '一键展开' })
   ]);
   container.append(toolbar);
@@ -810,8 +810,8 @@ function extractMdSectionForModel(fullMd, candidates = []) {
 export async function renderModelDetail(id) {
   const container = qs('#app');
   const [models, md] = await Promise.all([
-    fetchJSON('/web/data/models.json').catch(() => []),
-    fetchText('/model_detail.md')
+    fetchJSON('/data/models.json').catch(() => []),
+    fetchText('/docs/model_detail.md')
   ]);
   const params = new URLSearchParams(location.search);
   const idParam = id || params.get('id');
@@ -834,9 +834,9 @@ export async function renderModelDetail(id) {
   container.append(
     el('div', { className: 'toolbar' }, [
       el('button', { className: 'btn', 'data-back': '1', textContent: '返回上一页' }),
-      el('a', { className: 'btn', href: '/web/models/index.html', textContent: '返回模型列表' }),
-      el('a', { className: 'btn', href: `/web/practice/detail.html?model=${encodeURIComponent(idParam || '')}` , textContent: '查看实操' }),
-      el('a', { className: 'btn', href: `/web/compare/index.html?add=${encodeURIComponent(idParam || '')}`, textContent: '加入对比' })
+      el('a', { className: 'btn', href: '/models/index.html', textContent: '返回模型列表' }),
+      el('a', { className: 'btn', href: `/practice/detail.html?model=${encodeURIComponent(idParam || '')}` , textContent: '查看实操' }),
+      el('a', { className: 'btn', href: `/compare/index.html?add=${encodeURIComponent(idParam || '')}`, textContent: '加入对比' })
     ])
   );
 
@@ -858,14 +858,14 @@ export async function renderMetricsList() {
   container.append(el('h1', { textContent: '评估指标' }));
   const toolbar = el('div', { className: 'toolbar' }, [
     el('button', { className: 'btn', 'data-back': '1', textContent: '返回上一页' }),
-    el('a', { className: 'btn', href: '/web/models/index.html', textContent: '返回模型列表' }),
-    el('a', { className: 'btn', href: '/web/practice/detail.html', textContent: '返回模型实操' }),
+    el('a', { className: 'btn', href: '/models/index.html', textContent: '返回模型列表' }),
+    el('a', { className: 'btn', href: '/practice/detail.html', textContent: '返回模型实操' }),
     el('button', { className: 'btn', id: 'toggle-expand-metrics', textContent: '一键展开' })
   ]);
   container.append(toolbar);
 
   // Parse evaluation_index.md into hierarchical sections similar to model list
-  const md = await fetchText('/evaluation_index.md');
+  const md = await fetchText('/docs/evaluation_index.md');
   const lines = md.split(/\r?\n/);
 
   function stripMd(text) {
@@ -925,7 +925,7 @@ export async function renderMetricsList() {
       const li = el('li', { className: 'list-item', 'data-filter-item': '1', 'data-filter-key': display });
       const header = el('div', { className: 'item-header' });
       const left = el('div', { className: 'item-left' });
-      left.append(el('a', { href: `/web/metrics/detail.html?id=${encodeURIComponent(id)}&name=${encodeURIComponent(base)}`, textContent: display }));
+       left.append(el('a', { href: `/metrics/detail.html?id=${encodeURIComponent(id)}&name=${encodeURIComponent(base)}`, textContent: display }));
       header.append(left);
       li.append(header);
       ul.append(li);
@@ -958,7 +958,7 @@ export async function renderMetricDetail(id) {
   container.append(el('div', { className: 'toolbar' }, [
     el('button', { className: 'btn', 'data-back': '1', textContent: '返回上一页' })
   ]));
-  const md = await fetchText('/evaluation_index.md');
+  const md = await fetchText('/docs/evaluation_index.md');
   const lines = md.split(/\r?\n/);
   function strip(text){return (text||'').replace(/^#+\s+/, '').replace(/`/g,'').trim();}
   function cleanTitle(text){
@@ -1014,16 +1014,16 @@ export async function renderPractice(modelId) {
   // top toolbar with navigation and toggle
   const toolbar = el('div', { className: 'toolbar' }, [
     el('button', { className: 'btn', 'data-back': '1', textContent: '返回上一页' }),
-    el('a', { className: 'btn', href: '/web/models/index.html', textContent: '返回模型列表' }),
+    el('a', { className: 'btn', href: '/models/index.html', textContent: '返回模型列表' }),
     el('button', { className: 'btn', id: 'toggle-expand', textContent: '一键展开' })
   ]);
   container.append(toolbar);
 
   // Load model structure and practice examples
   const [mdList, modelsExtra, practices] = await Promise.all([
-    fetchText('/model_list.md'),
-    fetchJSON('/web/data/models.json').catch(() => []),
-    fetchJSON('/web/data/practice.json').catch(() => [])
+    fetchText('/docs/model_list.md'),
+    fetchJSON('/data/models.json').catch(() => []),
+    fetchJSON('/data/practice.json').catch(() => [])
   ]);
 
   // Group practice items by model id
@@ -1090,10 +1090,10 @@ export async function renderPractice(modelId) {
       const left = el('div', { className: 'item-left' });
       left.append(el('span', { className: 'twisty', textContent: '▶' }));
       const qsParams = `id=${encodeURIComponent(idGuess)}&name=${encodeURIComponent(name)}${enName ? `&en=${encodeURIComponent(enName)}` : ''}`;
-      left.append(el('a', { href: `/web/models/detail.html?${qsParams}`, textContent: name }));
+       left.append(el('a', { href: `/models/detail.html?${qsParams}`, textContent: name }));
       const right = el('div', { className: 'item-right' });
       right.append(
-        el('a', { className: 'link-action', href: `/web/compare/index.html?add=${encodeURIComponent(idGuess)}`, textContent: '加入对比' })
+        el('a', { className: 'link-action', href: `/compare/index.html?add=${encodeURIComponent(idGuess)}`, textContent: '加入对比' })
       );
       itemHeader.append(left, right);
 
@@ -1122,9 +1122,9 @@ export async function renderPractice(modelId) {
           const l = el('div', { className: 'item-left' });
           l.append(el('a', { href: p.link, target: '_blank', rel: 'noopener', textContent: p.title }));
           const r = el('div', { className: 'item-right' });
-          for (const mi of (p.metrics || [])) {
-            r.append(el('a', { className: 'badge', href: `/web/metrics/detail.html?id=${encodeURIComponent(mi)}&name=${encodeURIComponent(mi)}`, textContent: mi }));
-          }
+           for (const mi of (p.metrics || [])) {
+             r.append(el('a', { className: 'badge', href: `/metrics/detail.html?id=${encodeURIComponent(mi)}&name=${encodeURIComponent(mi)}`, textContent: mi }));
+           }
           h.append(l, r);
           subLi.append(h, el('div', { className: 'item-meta', textContent: p.summary || '' }));
           sub.append(subLi);
@@ -1176,14 +1176,14 @@ export async function renderCompare(initialIds = []) {
   container.append(
     el('div', { className: 'toolbar' }, [
       el('button', { className: 'btn', 'data-back': '1', textContent: '返回上一页' }),
-      el('a', { className: 'btn', href: '/web/models/index.html', textContent: '返回模型列表' })
+      el('a', { className: 'btn', href: '/models/index.html', textContent: '返回模型列表' })
     ])
   );
 
   // Load sources: list for full inventory, json for extra fields, summaries for overview
   const [mdList, extraModels, docSummaries] = await Promise.all([
-    fetchText('/model_list.md'),
-    fetchJSON('/web/data/models.json').catch(() => []),
+    fetchText('/docs/model_list.md'),
+    fetchJSON('/data/models.json').catch(() => []),
     getSummariesFromDoc()
   ]);
 
@@ -1364,7 +1364,7 @@ export async function renderCompare(initialIds = []) {
         const tr = el('tr');
         const left = el('td');
         const qp = `id=${encodeURIComponent(m.id)}&name=${encodeURIComponent(m.name || '')}${m.en ? `&en=${encodeURIComponent(m.en)}` : ''}`;
-        const link = el('a', { href: `/web/models/detail.html?${qp}`, textContent: m.name });
+         const link = el('a', { href: `/models/detail.html?${qp}`, textContent: m.name });
         // Make sure navigation always works even if any overlay blocks pointer events
         link.style.position = 'relative';
         link.style.zIndex = '2';
@@ -1379,7 +1379,7 @@ export async function renderCompare(initialIds = []) {
         const found = metrics.filter(mi => (getter(i) || '').toLowerCase().includes(mi));
         if (found.length) {
           const badgeRow = el('div', { style: 'margin-top:6px;' });
-          for (const mi of found) badgeRow.append(el('a', { className: 'badge', href: `/web/metrics/detail.html?id=${encodeURIComponent(mi)}&name=${encodeURIComponent(mi)}`, textContent: mi }));
+           for (const mi of found) badgeRow.append(el('a', { className: 'badge', href: `/metrics/detail.html?id=${encodeURIComponent(mi)}&name=${encodeURIComponent(mi)}`, textContent: mi }));
           right.append(badgeRow);
         }
         tr.append(left, right);

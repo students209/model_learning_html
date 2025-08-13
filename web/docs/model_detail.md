@@ -1,0 +1,3 @@
+// content copied from project root model_detail.md
+// ... existing code ...
+

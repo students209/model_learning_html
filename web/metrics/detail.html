@@ -4,19 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>指标详情</title>
-  <link rel="stylesheet" href="/web/assets/css/styles.css" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
 </head>
 <body>
   <div class="container" id="app"></div>
   <script type="module">
-    import { renderHeader, wirePageSearch, renderMetricDetail } from '/web/assets/js/renderers.js';
-    import { installLiveReload } from '/web/assets/js/utils.js?v=0.2.74';
+    import { renderHeader, wirePageSearch, renderMetricDetail } from '/assets/js/renderers.js';
+    import { installLiveReload } from '/assets/js/utils.js?v=0.2.74';
     renderHeader('metrics');
     const params = new URLSearchParams(location.search);
     const id = params.get('id');
     await renderMetricDetail(id);
     wirePageSearch(document);
-    installLiveReload(['/evaluation_index.md']);
+    installLiveReload(['/docs/evaluation_index.md']);
   </script>
 </body>
 </html>
