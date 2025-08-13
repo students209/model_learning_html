@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>模型列表</title>
+  <link rel="stylesheet" href="/web/assets/css/styles.css" />
+</head>
+<body>
+  <div class="container" id="app"></div>
+  <script type="module">
+    import { renderHeader, wirePageSearch, renderModelList } from '/web/assets/js/renderers.js';
+    import { installLiveReload } from '/web/assets/js/utils.js?v=0.2.74';
+    renderHeader('models');
+    await renderModelList();
+    wirePageSearch(document);
+    // Auto-refresh when docs change
+    installLiveReload(['/model_list.md', '/model_summery.md', '/model_detail.md']);
+  </script>
+</body>
+</html>

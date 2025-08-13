@@ -1,0 +1,38 @@
+[
+  {
+    "id": "linear-regression",
+    "name": "线性回归",
+    "category": "监督学习",
+    "summary": "用于回归任务，假设输入与输出存在线性关系。",
+    "scenarios": "数值预测、基准模型",
+    "pros": "简单、速度快、可解释性强",
+    "cons": "对异常值敏感、只能拟合线性关系",
+    "keyParams": "是否正则化、正则强度",
+    "complexity": "训练与预测均较快",
+    "metrics": ["mae", "mse", "r2"]
+  },
+  {
+    "id": "logistic-regression",
+    "name": "逻辑回归",
+    "category": "监督学习",
+    "summary": "用于二分类，输出概率并可设置阈值。",
+    "scenarios": "CTR 预测、风控、医疗诊断",
+    "pros": "速度快、易解释、输出概率",
+    "cons": "线性边界、对特征工程敏感",
+    "keyParams": "正则化方式与强度",
+    "complexity": "训练与预测均较快",
+    "metrics": ["accuracy", "precision", "recall", "auc"]
+  },
+  {
+    "id": "svm",
+    "name": "支持向量机 (SVM)",
+    "category": "监督学习",
+    "summary": "通过最大化间隔实现分类/回归，核技巧处理非线性。",
+    "scenarios": "文本分类、图像识别",
+    "pros": "泛化强、适合高维",
+    "cons": "训练慢、对参数敏感",
+    "keyParams": "C、kernel、gamma",
+    "complexity": "训练较慢，预测中等",
+    "metrics": ["accuracy", "f1", "auc"]
+  }
+]

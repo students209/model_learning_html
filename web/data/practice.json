@@ -1,0 +1,226 @@
+[
+  {
+    "title": "房价预测：线性回归基准模型",
+    "summary": "使用线性回归构建回归基线，评估 MAE/MSE/R²。",
+    "model": "linear-regression",
+    "metrics": ["mae", "mse", "r2"],
+    "link": "https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html"
+  },
+  {
+    "title": "感知机：二分类玩具数据",
+    "summary": "使用感知机在可分数据上训练并可视化分割平面。",
+    "model": "perceptron",
+    "metrics": ["accuracy"],
+    "link": "https://scikit-learn.org/stable/modules/linear_model.html#perceptron"
+  },
+  {
+    "title": "前馈神经网络：Keras MLP 分类",
+    "summary": "使用 Keras 构建多层感知机处理结构化数据分类任务。",
+    "model": "fnn",
+    "metrics": ["accuracy", "f1"],
+    "link": "https://keras.io/getting_started/intro_to_keras_for_engineers/"
+  },
+  {
+    "title": "循环神经网络：Keras LSTM 文本分类",
+    "summary": "利用 LSTM 进行序列建模，完成 IMDB 情感分类。",
+    "model": "rnn",
+    "metrics": ["accuracy", "f1"],
+    "link": "https://keras.io/examples/nlp/lstm_text_classification/"
+  },
+  {
+    "title": "长短期记忆网络：Keras LSTM 序列预测",
+    "summary": "用 LSTM 预测时间序列，演示序列到序列的建模。",
+    "model": "lstm",
+    "metrics": ["mae"],
+    "link": "https://keras.io/examples/timeseries/timeseries_weather_forecasting/"
+  },
+  {
+    "title": "门控循环单元：Keras GRU 文本分类",
+    "summary": "使用 GRU 进行文本分类，与 LSTM 做对比。",
+    "model": "gru",
+    "metrics": ["accuracy", "f1"],
+    "link": "https://keras.io/examples/nlp/text_classification_with_transformer/"
+  },
+  {
+    "title": "自编码器：Keras 去噪自编码器",
+    "summary": "构建去噪自编码器，对图像添加噪声并用自编码器恢复。",
+    "model": "autoencoder",
+    "metrics": ["mse"],
+    "link": "https://keras.io/examples/vision/autoencoder/"
+  },
+  {
+    "title": "生成对抗网络：Keras DCGAN 生成手写数字",
+    "summary": "使用 DCGAN 生成 MNIST 手写数字。",
+    "model": "gan",
+    "metrics": ["fid"],
+    "link": "https://keras.io/examples/generative/dcgan_overriding_train_step/"
+  },
+  {
+    "title": "Transformer：文本分类",
+    "summary": "基于 Keras/TF 的 Transformer 编码器做文本分类。",
+    "model": "transformer",
+    "metrics": ["accuracy", "f1"],
+    "link": "https://keras.io/examples/nlp/text_classification_with_transformer/"
+  },
+  {
+    "title": "医疗费用预测：正则化线性回归（Ridge/Lasso）",
+    "summary": "用保险费用数据对比 Ridge 与 Lasso，演示正则化控制过拟合。",
+    "model": "linear-regression",
+    "metrics": ["mae", "mse", "r2"],
+    "link": "https://scikit-learn.org/stable/auto_examples/linear_model/plot_ridge_path.html"
+  },
+  {
+    "title": "垃圾邮件分类：逻辑回归",
+    "summary": "基于 TF-IDF 特征训练逻辑回归，关注 Precision/Recall。",
+    "model": "logistic-regression",
+    "metrics": ["accuracy", "precision", "recall", "auc"],
+    "link": "https://scikit-learn.org/stable/auto_examples/linear_model/plot_sparse_logistic_regression_20newsgroups.html"
+  },
+  {
+    "title": "信用违约预测：逻辑回归与阈值调优",
+    "summary": "用信用卡违约数据，比较不同阈值下的精确率/召回率与F1。",
+    "model": "logistic-regression",
+    "metrics": ["precision", "recall", "f1", "auc"],
+    "link": "https://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html"
+  },
+  {
+    "title": "手写数字识别：SVM",
+    "summary": "使用 RBF 核 SVM 进行分类，调参 C 与 gamma。",
+    "model": "svm",
+    "metrics": ["accuracy", "f1", "auc"],
+    "link": "https://scikit-learn.org/stable/auto_examples/classification/plot_digits_classification.html"
+  },
+  {
+    "title": "文本分类：线性核 SVM + 词袋/TF-IDF",
+    "summary": "在新闻组数据集上用 LinearSVC 进行文本分类，特征工程采用 TF‑IDF。",
+    "model": "svm",
+    "metrics": ["accuracy", "f1"],
+    "link": "https://scikit-learn.org/stable/auto_examples/text/plot_document_classification_20newsgroups.html"
+  },
+  {
+    "title": "决策树：泰坦尼克幸存预测",
+    "summary": "用决策树进行二分类，展示特征重要性与树深度/剪枝对过拟合的影响。",
+    "model": "decision-trees",
+    "metrics": ["accuracy", "precision", "recall"],
+    "link": "https://scikit-learn.org/stable/auto_examples/tree/plot_iris.html"
+  },
+  {
+    "title": "随机森林：表格数据分类基线",
+    "summary": "在 UCI/表格数据集上训练随机森林，观察袋外评分与特征重要性。",
+    "model": "random-forests",
+    "metrics": ["accuracy", "auc", "f1"],
+    "link": "https://scikit-learn.org/stable/auto_examples/ensemble/plot_forest_importances_faces.html"
+  },
+  {
+    "title": "梯度提升机：XGBoost 快速上手",
+    "summary": "使用 XGBoost 进行二分类，演示学习率、树数与最大深度的影响。",
+    "model": "xgboost",
+    "metrics": ["auc", "f1", "accuracy"],
+    "link": "https://xgboost.readthedocs.io/en/stable/get_started/index.html"
+  },
+  {
+    "title": "梯度提升机：LightGBM 二分类实践",
+    "summary": "使用 LightGBM 训练二分类模型，演示 num_leaves、learning_rate 等关键超参数。",
+    "model": "lightgbm",
+    "metrics": ["auc", "f1", "accuracy"],
+    "link": "https://lightgbm.readthedocs.io/en/stable/Quick-Start.html"
+  },
+  {
+    "title": "朴素贝叶斯：新闻文本分类",
+    "summary": "在 20newsgroups 数据集上用 MultinomialNB 进行文本分类。",
+    "model": "naive-bayes",
+    "metrics": ["accuracy", "precision", "recall"],
+    "link": "https://scikit-learn.org/stable/auto_examples/text/plot_document_classification_20newsgroups.html#using-naive-bayes"
+  },
+  {
+    "title": "神经网络：MNIST 手写数字（MLPClassifier）",
+    "summary": "用多层感知机训练 MNIST 分类器，比较隐藏层与正则化设置。",
+    "model": "neural-networks",
+    "metrics": ["accuracy", "f1"],
+    "link": "https://scikit-learn.org/stable/auto_examples/neural_networks/plot_mnist_filters.html"
+  },
+  {
+    "title": "卷积神经网络：PyTorch MNIST 教程",
+    "summary": "使用 PyTorch 实现 CNN 进行 MNIST 分类，包含训练与评估流程。",
+    "model": "cnn",
+    "metrics": ["accuracy", "f1"],
+    "link": "https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html"
+  },
+  {
+    "title": "前馈神经网络：Keras IMDB 情感分类",
+    "summary": "用 Keras 构建简单的全连接网络，完成 IMDB 影评情感分类。",
+    "model": "mlp",
+    "metrics": ["accuracy", "f1"],
+    "link": "https://keras.io/examples/nlp/text_classification_from_scratch/"
+  },
+  {
+    "title": "K-Means 聚类：图像量化",
+    "summary": "用 K-Means 对图像做颜色量化，直观展示聚类效果。",
+    "model": "k-means-clustering",
+    "metrics": ["silhouette", "ch"],
+    "link": "https://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_digits.html"
+  },
+  {
+    "title": "层次聚类：凝聚聚类示例",
+    "summary": "演示 Agglomerative Clustering 在二维数据上的聚类与树状图。",
+    "model": "hierarchical-clustering",
+    "metrics": ["silhouette", "ch"],
+    "link": "https://scikit-learn.org/stable/auto_examples/cluster/plot_agglomerative_clustering.html"
+  },
+  {
+    "title": "DBSCAN：密度聚类示例",
+    "summary": "展示 DBSCAN 在非凸形簇上的优势与参数 eps/min_samples 的作用。",
+    "model": "dbscan",
+    "metrics": ["silhouette", "ch"],
+    "link": "https://scikit-learn.org/stable/auto_examples/cluster/plot_dbscan.html"
+  },
+  {
+    "title": "PCA：人脸特征降维与重构",
+    "summary": "使用 PCA 对人脸数据进行降维并可视化重构效果。",
+    "model": "pca",
+    "metrics": ["explained-variance"],
+    "link": "https://scikit-learn.org/stable/auto_examples/decomposition/plot_faces_decomposition.html"
+  },
+  {
+    "title": "PCA：乳腺癌数据集降维可视化",
+    "summary": "在乳腺癌数据上用 PCA 做二维可视化，观察主成分解释方差。",
+    "model": "pca",
+    "metrics": ["explained-variance"],
+    "link": "https://scikit-learn.org/stable/auto_examples/decomposition/plot_pca_vs_fa_model_selection.html"
+  },
+  {
+    "title": "关联规则：Apriori/FP-Growth 购物篮分析",
+    "summary": "使用 mlxtend 实现 Apriori/FP-Growth，挖掘频繁项集与关联规则。",
+    "model": "association-rule-learning",
+    "metrics": ["support", "confidence", "lift"],
+    "link": "http://rasbt.github.io/mlxtend/user_guide/frequent_patterns/association_rules/"
+  },
+  {
+    "title": "强化学习：OpenAI Gym 冰湖 Q-Learning",
+    "summary": "用 Q-Learning 解 FrozenLake 环境，演示 Q 表迭代与贪婪策略。",
+    "model": "q-learning",
+    "metrics": ["avg-reward"],
+    "link": "https://www.gymlibrary.dev/environments/toy_text/frozen_lake/"
+  },
+  {
+    "title": "强化学习：DQN 解决 CartPole",
+    "summary": "使用 PyTorch 实现 DQN，解决 CartPole 平衡问题。",
+    "model": "dqn",
+    "metrics": ["avg-reward"],
+    "link": "https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html"
+  },
+  {
+    "title": "深度Q网络：Stable-Baselines3 CartPole",
+    "summary": "用 Stable-Baselines3 训练 DQN 解决 CartPole，提供更高层封装。",
+    "model": "dqn",
+    "metrics": ["avg-reward"],
+    "link": "https://stable-baselines3.readthedocs.io/en/stable/modules/dqn.html"
+  },
+  {
+    "title": "强化学习：策略梯度 REINFORCE",
+    "summary": "用策略梯度（REINFORCE）训练简单策略网络，在 CartPole 上取得回报。",
+    "model": "policy-gradient-methods",
+    "metrics": ["avg-reward"],
+    "link": "https://spinningup.openai.com/en/latest/spinningup/rl_intro.html"
+  }
+]

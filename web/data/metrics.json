@@ -1,0 +1,9 @@
+[
+  { "id": "mae", "name": "MAE（平均绝对误差）", "desc": "回归常用指标，误差绝对值的平均值。", "models": ["linear-regression"] },
+  { "id": "mse", "name": "MSE（均方误差）", "desc": "回归常用指标，对大误差更敏感。", "models": ["linear-regression"] },
+  { "id": "r2", "name": "R² 分数", "desc": "解释方差比例，越接近 1 越好。", "models": ["linear-regression"] },
+  { "id": "accuracy", "name": "准确率", "desc": "分类中预测正确的比例。", "models": ["logistic-regression", "svm"] },
+  { "id": "precision", "name": "精确率", "desc": "预测为正的样本中有多少是真的正。", "models": ["logistic-regression", "svm"] },
+  { "id": "recall", "name": "召回率", "desc": "真实为正的样本中有多少被预测正确。", "models": ["logistic-regression", "svm"] },
+  { "id": "auc", "name": "AUC", "desc": "ROC 曲线下面积，越大越好。", "models": ["logistic-regression", "svm"] }
+]

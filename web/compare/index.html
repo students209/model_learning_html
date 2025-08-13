@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>模型对比</title>
+  <link rel="stylesheet" href="/web/assets/css/styles.css" />
+</head>
+<body>
+  <div class="container" id="app"></div>
+  <script type="module">
+    import { renderHeader, wirePageSearch, renderCompare } from '/web/assets/js/renderers.js?v=0.2.59';
+    import { installLiveReload } from '/web/assets/js/utils.js?v=0.2.74';
+    renderHeader('compare');
+    const params = new URLSearchParams(location.search);
+    const add = params.getAll('add');
+    await renderCompare(add);
+    wirePageSearch(document);
+    installLiveReload(['/model_list.md', '/model_summery.md', '/model_detail.md']);
+  </script>
+</body>
+</html>

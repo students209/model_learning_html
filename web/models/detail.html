@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>模型详情</title>
+  <link rel="stylesheet" href="/web/assets/css/styles.css" />
+</head>
+<body>
+  <div class="container" id="app"></div>
+  <script type="module">
+    import { renderHeader, wirePageSearch, renderModelDetail } from '/web/assets/js/renderers.js';
+    import { installLiveReload } from '/web/assets/js/utils.js?v=0.2.74';
+    renderHeader('models');
+    const params = new URLSearchParams(location.search);
+    const id = params.get('id');
+    await renderModelDetail(id);
+    wirePageSearch(document);
+    installLiveReload(['/model_detail.md']);
+  </script>
+</body>
+</html>
